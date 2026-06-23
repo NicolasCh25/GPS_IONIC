@@ -1,20 +1,51 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Ubicación GPS</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding ion-text-center">
+  <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 80vh;">
+    
+    <ion-icon name="location-outline" style="font-size: 80px; color: #3880ff; margin-bottom: 20px;"></ion-icon>
+    
+    <div *ngIf="latitude && longitude" style="width: 100%; max-width: 400px;">
+      
+      <ion-card color="dark" style="border: 1px solid #3880ff;">
+        <ion-card-header>
+          <ion-card-subtitle style="color: #98f2ff;">Coordenada X</ion-card-subtitle>
+          <ion-card-title style="color: #ffffff;">Latitud</ion-card-title>
+        </ion-card-header>
+        <ion-card-content style="font-size: 26px; font-weight: bold; color: #3880ff;">
+          {{ latitude }}
+        </ion-card-content>
+      </ion-card>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+      <ion-card color="dark" style="border: 1px solid #3880ff;">
+        <ion-card-header>
+          <ion-card-subtitle style="color: #98f2ff;">Coordenada Y</ion-card-subtitle>
+          <ion-card-title style="color: #ffffff;">Longitud</ion-card-title>
+        </ion-card-header>
+        <ion-card-content style="font-size: 26px; font-weight: bold; color: #3880ff;">
+          {{ longitude }}
+        </ion-card-content>
+      </ion-card>
+
+      <ion-button expand="block" color="success" [href]="getGoogleMapsUrl()" target="_blank" style="width: 100%; margin-top: 25px; font-weight: bold;">
+        <ion-icon name="map-outline" slot="start"></ion-icon>
+        Abrir en Google Maps
+      </ion-button>
+    </div>
+
+    <div *ngIf="errorMessage" style="background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 8px; margin: 20px 0; width: 100%; max-width: 400px; border: 1px solid #f5c6cb; font-weight: 500;">
+      <ion-icon name="alert-circle-outline" style="vertical-align: middle; margin-right: 5px;"></ion-icon>
+      {{ errorMessage }}
+    </div>
+
+    <ion-button expand="block" (click)="obtenerUbicacion()" style="width: 100%; max-width: 400px; margin-top: 20px; font-weight: bold;">
+      <ion-icon name="locate-outline" slot="start"></ion-icon>
+      Obtener Ubicación Actual
+    </ion-button>
+    
   </div>
 </ion-content>
