@@ -1,0 +1,7 @@
+{
+  "name": "gps-comparativa",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
